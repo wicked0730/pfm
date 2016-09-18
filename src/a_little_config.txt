@@ -1,0 +1,5 @@
+jdbcUrl = jdbc:jtds:sqlserver://192.168.189.130:1433;DatabaseName=人事档案管理系统
+user = sa
+password = Piggy20141027
+driverClass = net.sourceforge.jtds.jdbc.Driver
+devMode = true

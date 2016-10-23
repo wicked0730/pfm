@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
+import com.jfinal.plugin.activerecord.dialect.OracleDialect;
 import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.pfm.common.config.InitConfig;
@@ -14,7 +15,7 @@ import com.pfm.common.config.InitConfig;
 public class _JFinalDemoGenerator {
 	
 	public static DataSource getDataSource() {
-		PropKit.use("a_little_config.txt");
+		PropKit.use("config_oracle.txt");
 		C3p0Plugin c3p0Plugin = InitConfig.createC3p0Plugin();
 		c3p0Plugin.start();
 		return c3p0Plugin.getDataSource();
@@ -33,8 +34,9 @@ public class _JFinalDemoGenerator {
 		
 		// 创建生成器
 		Generator gernerator = new Generator(getDataSource(), baseModelPackageName, baseModelOutputDir, modelPackageName, modelOutputDir);
+		gernerator.setDialect(new OracleDialect());
 		// 添加不需要生成的表名
-		gernerator.addExcludedTable("adv");
+		//gernerator.addExcludedTable("adv");
 		// 设置是否在 Model 中生成 dao 对象
 		gernerator.setGenerateDaoInModel(true);
 		// 设置是否生成字典文件
